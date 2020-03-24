@@ -5,19 +5,20 @@ namespace VirtualChannels
 {
     public class SingleLoggedParameterVirtualChannel<TTime> : IVirtualChannel<TTime>
     {
-        private readonly int m_loggedParameterId;
+        private readonly int m_virtualParameterId;
         private readonly int m_loggedParameterFrequencyInMilliHz;
         private readonly ITimeUtils<TTime> m_timeUtils;
         private readonly SingleValueWithSlowRowExpressionContext<TTime> m_context;
         private readonly Func<double> m_evaluate;
 
-        public SingleLoggedParameterVirtualChannel(int loggedParameterId, int loggedParameterFrequencyInMilliHz, ISlowRowStorage<TTime> slowRowStorage, ITimeUtils<TTime> timeUtils)
+        public SingleLoggedParameterVirtualChannel(IExpression virtualExpression, int virtualParameterId, int loggedParameterFrequencyInMilliHz, ISlowRowStorage<TTime> slowRowStorage, ITimeUtils<TTime> timeUtils)
         {
-            m_loggedParameterId = loggedParameterId;
+            m_virtualParameterId = virtualParameterId;
             m_loggedParameterFrequencyInMilliHz = loggedParameterFrequencyInMilliHz;
             m_timeUtils = timeUtils;
             m_context = new SingleValueWithSlowRowExpressionContext<TTime>(slowRowStorage);
             var compiler = new CompileVisitor(m_context, new DefaultCallContext());
+            virtualExpression.Accept(compiler);
             m_evaluate = compiler.GetCompiledExpression();
         }
 
@@ -31,7 +32,7 @@ namespace VirtualChannels
                 computedValues[i] = m_evaluate();
             }
 
-            computed(time, m_loggedParameterId, computedValues);
+            computed(time, m_virtualParameterId, computedValues);
         }
     }
 }

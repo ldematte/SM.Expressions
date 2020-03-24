@@ -48,6 +48,8 @@
     <Compile Include="ITimeUtils.cs" />
     <Compile Include="IVirtualChannel.cs" />
     <Compile Include="DataStructures\CoverageCircularBuffer.cs" />
+    <Compile Include="MultiParameterVirtualChannel.cs" />
+    <Compile Include="MultiValueWithSlowRowExpressionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleLoggedParameterVirtualChannel.cs" />
     <Compile Include="SingleValueWithSlowRowExpressionContext.cs" />

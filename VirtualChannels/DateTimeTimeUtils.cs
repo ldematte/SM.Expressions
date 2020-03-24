@@ -15,5 +15,10 @@ namespace VirtualChannels
             var index = (long)Math.Round(1000.0 / rateInMilliHz * millis);
             return index;
         }
+
+        public DateTime Zero()
+        {
+            return DateTime.Today;
+        }
     }
 }

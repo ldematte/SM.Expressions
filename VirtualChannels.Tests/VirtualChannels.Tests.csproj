@@ -47,8 +47,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AliasVirtualChannelTests.cs" />
     <Compile Include="DataStructures\CircularArrayTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SingleLoggedParameterVirtualChannelTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
