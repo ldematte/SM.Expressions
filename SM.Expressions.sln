@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Expressions.Tests", "SM.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SM.Expressions", "SM.Expressions\SM.Expressions.csproj", "{64FA2D9E-7201-4D5F-AA06-5E3251105E3A}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualChannels", "VirtualChannels\VirtualChannels.csproj", "{4443FD1A-C7C1-4FBB-AE99-703F5A8A04D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VirtualChannels.Tests", "VirtualChannels.Tests\VirtualChannels.Tests.csproj", "{585FB61E-F626-4415-870D-2F7F85D7C7B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{64FA2D9E-7201-4D5F-AA06-5E3251105E3A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{64FA2D9E-7201-4D5F-AA06-5E3251105E3A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{64FA2D9E-7201-4D5F-AA06-5E3251105E3A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4443FD1A-C7C1-4FBB-AE99-703F5A8A04D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4443FD1A-C7C1-4FBB-AE99-703F5A8A04D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4443FD1A-C7C1-4FBB-AE99-703F5A8A04D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4443FD1A-C7C1-4FBB-AE99-703F5A8A04D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{585FB61E-F626-4415-870D-2F7F85D7C7B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{585FB61E-F626-4415-870D-2F7F85D7C7B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{585FB61E-F626-4415-870D-2F7F85D7C7B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{585FB61E-F626-4415-870D-2F7F85D7C7B3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
