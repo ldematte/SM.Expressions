@@ -20,11 +20,11 @@ namespace VirtualChannels
             m_currentTime = sampleTime;
         }
 
-        public double GetValue(string identifier, string appName, bool raw, bool noLog)
+        public double GetValue(int parameterId, bool raw, bool noLog)
         {
             if (noLog)
             {
-                return m_slowRowStorage.GetValue(m_currentTime, identifier, appName, raw);
+                return m_slowRowStorage.GetValue(m_currentTime, parameterId, raw);
             }
             else
             {

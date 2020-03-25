@@ -76,5 +76,18 @@ namespace VirtualChannels.DataStructures
         {
             return index % m_buffer.Length;
         }
+
+        public void Insert(T[] values, long destIdx)
+        {
+            for (int i = 0; i < values.Length; i++)
+            {
+                var idx = InternalIndex(destIdx + i);
+                m_buffer[idx] = values[i];
+            }
+        }
+
+        public long LowerBound => m_startIndex;
+
+        public long UpperBound => m_endIndex;
     }
 }

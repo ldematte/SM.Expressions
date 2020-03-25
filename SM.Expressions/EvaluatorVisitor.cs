@@ -11,13 +11,15 @@ namespace SM.Expressions
     public class EvaluatorVisitor : IExpressionVisitor
     {
         private readonly IExpressionContext m_context;
+        private readonly IParametersSymbolTable m_symbolTable;
         private readonly IFunctionContext m_functionContext;
 
         private readonly Stack<double> m_stack = new Stack<double>();
 
-        public EvaluatorVisitor(IExpressionContext context, IFunctionContext functionContext)
+        public EvaluatorVisitor(IExpressionContext context, IParametersSymbolTable symbolTable, IFunctionContext functionContext)
         {
             m_context = context;
+            m_symbolTable = symbolTable;
             m_functionContext = functionContext;
         }
 
@@ -25,8 +27,13 @@ namespace SM.Expressions
 
         public void VisitIdentifier(string identifier, string appName, bool isRaw, bool isNoLog)
         {
-            var value = m_context.GetValue(identifier, appName, isRaw, isNoLog);
-            m_stack.Push(value);
+            m_symbolTable.GetId(identifier, appName,
+                id =>
+                {
+                    var value = m_context.GetValue(id, isRaw, isNoLog);
+                    m_stack.Push(value);
+                },
+                () => m_stack.Push(double.NaN));
         }
 
         public void VisitLiteral(double value)

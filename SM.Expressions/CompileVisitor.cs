@@ -14,13 +14,15 @@ namespace SM.Expressions
     public class CompileVisitor : IExpressionVisitor
     {
         private readonly IExpressionContext m_context;
+        private readonly IParametersSymbolTable m_symbolTable;
         private readonly ICallContext m_callContext;
 
         private readonly Stack<Expression> m_stack = new Stack<Expression>();
 
-        public CompileVisitor(IExpressionContext context, ICallContext callContext)
+        public CompileVisitor(IExpressionContext context, IParametersSymbolTable symbolTable, ICallContext callContext)
         {
             m_context = context;
+            m_symbolTable = symbolTable;
             m_callContext = callContext;
         }
 
@@ -32,8 +34,16 @@ namespace SM.Expressions
 
         public void VisitIdentifier(string identifier, string appName, bool isRaw, bool isNoLog)
         {
-            m_stack.Push(Expression.Call(Expression.Constant(m_context), m_context.GetType().GetMethod("GetValue"),
-                new [] { Expression.Constant(identifier), Expression.Constant(appName), Expression.Constant(isRaw), Expression.Constant(isNoLog) }));
+            m_symbolTable.GetId(identifier, appName,
+                id => 
+                {
+                    m_stack.Push(Expression.Call(Expression.Constant(m_context), m_context.GetType().GetMethod("GetValue"),
+                        new [] { Expression.Constant(id), Expression.Constant(isRaw), Expression.Constant(isNoLog) }));
+                }, 
+                () =>
+                {
+                    m_stack.Push(Expression.Constant(double.NaN));
+                });
         }
 
         public void VisitLiteral(double value)

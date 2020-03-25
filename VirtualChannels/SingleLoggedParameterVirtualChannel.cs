@@ -11,13 +11,14 @@ namespace VirtualChannels
         private readonly SingleValueWithSlowRowExpressionContext<TTime> m_context;
         private readonly Func<double> m_evaluate;
 
-        public SingleLoggedParameterVirtualChannel(IExpression virtualExpression, int virtualParameterId, int loggedParameterFrequencyInMilliHz, ISlowRowStorage<TTime> slowRowStorage, ITimeUtils<TTime> timeUtils)
+        public SingleLoggedParameterVirtualChannel(IExpression virtualExpression, int virtualParameterId, int loggedParameterFrequencyInMilliHz, 
+            IParametersSymbolTable symbolTable, ISlowRowStorage<TTime> slowRowStorage, ITimeUtils<TTime> timeUtils)
         {
             m_virtualParameterId = virtualParameterId;
             m_loggedParameterFrequencyInMilliHz = loggedParameterFrequencyInMilliHz;
             m_timeUtils = timeUtils;
             m_context = new SingleValueWithSlowRowExpressionContext<TTime>(slowRowStorage);
-            var compiler = new CompileVisitor(m_context, new DefaultCallContext());
+            var compiler = new CompileVisitor(m_context, symbolTable, new DefaultCallContext());
             virtualExpression.Accept(compiler);
             m_evaluate = compiler.GetCompiledExpression();
         }
@@ -27,7 +28,7 @@ namespace VirtualChannels
             var computedValues = new double[values.Length];
             for (var i = 0; i < values.Length; i++)
             {
-                var sampleTime = m_timeUtils.AddMillis(time, i * 1000  * 1000 / m_loggedParameterFrequencyInMilliHz);
+                var sampleTime = m_timeUtils.IndexToTime(time, i, m_loggedParameterFrequencyInMilliHz);
                 m_context.SetCurrentValue(values[i], sampleTime);
                 computedValues[i] = m_evaluate();
             }

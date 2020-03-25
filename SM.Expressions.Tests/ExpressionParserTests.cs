@@ -37,12 +37,13 @@ namespace SM.Expressions.Tests
             var expression = SMExpressionParser.ParseOrThrow("log(10) + $aaa + abs(nolog($adc_Controller)) + 1*2");
 
             var simpleExpressionContext = new TestExpressionContext();
+            var symbolTable = new TestSymbolTable();
 
             var times = 1000000;
             var sw = Stopwatch.StartNew();
             for (int i = 0; i < times; ++i)
             {
-                var evaluator = new EvaluatorVisitor(simpleExpressionContext, new DefaultFunctionContext());
+                var evaluator = new EvaluatorVisitor(simpleExpressionContext, symbolTable, new DefaultFunctionContext());
                 expression.Accept(evaluator);
             }
 
@@ -57,7 +58,7 @@ namespace SM.Expressions.Tests
             var expression = SMExpressionParser.ParseOrThrow("log(10) + $aaa + abs(nolog($adc_Controller)) + 1*2");
 
             var simpleExpressionContext = new TestExpressionContext();
-            var ev = new EvaluatorVisitor(simpleExpressionContext, new DefaultFunctionContext());
+            var ev = new EvaluatorVisitor(simpleExpressionContext, new TestSymbolTable(), new DefaultFunctionContext());
             expression.Accept(ev);
 
             Assert.AreEqual(14.0, ev.Value, 1e-9);
@@ -70,7 +71,7 @@ namespace SM.Expressions.Tests
 
             var simpleExpressionContext = new TestExpressionContext();
 
-            var compiler = new CompileVisitor(simpleExpressionContext, new DefaultCallContext());
+            var compiler = new CompileVisitor(simpleExpressionContext, new TestSymbolTable(), new DefaultCallContext());
             expression.Accept(compiler);
             var compiledExpression = compiler.GetCompiledExpression();
 
@@ -92,11 +93,19 @@ namespace SM.Expressions.Tests
 
             var simpleExpressionContext = new TestExpressionContext();
 
-            var compiler = new CompileVisitor(simpleExpressionContext, new DefaultCallContext());
+            var compiler = new CompileVisitor(simpleExpressionContext, new TestSymbolTable(), new DefaultCallContext());
             expression.Accept(compiler);
             var compiledExpression = compiler.GetCompiledExpression();
 
             Assert.AreEqual(14.0, compiledExpression(), 1e-9);
+        }
+    }
+
+    public class TestSymbolTable : IParametersSymbolTable
+    {
+        public void GetId(string identifier, string appName, Action<int> found, Action notFound)
+        {
+            found(1);
         }
     }
 }

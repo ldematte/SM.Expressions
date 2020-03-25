@@ -43,6 +43,8 @@
   <ItemGroup>
     <Compile Include="AliasVirtualChannel.cs" />
     <Compile Include="DataStructures\CircularArray.cs" />
+    <Compile Include="DataStructures\CircularArraySegment.cs" />
+    <Compile Include="DataStructures\CoverageStateMachine.cs" />
     <Compile Include="DateTimeTimeUtils.cs" />
     <Compile Include="ISlowRowStorage.cs" />
     <Compile Include="ITimeUtils.cs" />

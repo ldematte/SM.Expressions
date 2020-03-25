@@ -2,7 +2,7 @@
 {
     internal class TestExpressionContext : IExpressionContext
     {
-        public double GetValue(string identifier, string appName, bool raw, bool noLog)
+        public double GetValue(int parameterId, bool raw, bool noLog)
         {
             if (noLog)
                 return 1;

@@ -70,6 +70,7 @@
     <Compile Include="IdentifiersVisitor.cs" />
     <Compile Include="IExpressionContext.cs" />
     <Compile Include="IExpressionVisitor.cs" />
+    <Compile Include="IParametersSymbolTable.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DefaultCallContext.cs" />
     <Compile Include="DefaultFunctionContext.cs" />

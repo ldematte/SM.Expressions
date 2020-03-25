@@ -2,6 +2,6 @@
 {
     public interface ISlowRowStorage<in TTime>
     {
-        double GetValue(TTime atTime, string identifier, string appName, bool raw);
+        double GetValue(TTime atTime, int parameterId, bool raw);
     }
 }

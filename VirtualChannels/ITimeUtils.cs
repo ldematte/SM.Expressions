@@ -2,7 +2,7 @@
 {
     public interface ITimeUtils<TTime>
     {
-        TTime AddMillis(TTime time, int millis);
+        TTime IndexToTime(TTime time0, int index, int rateInMilliHz);
         long TimeToIndex(TTime time0, TTime currentTime, int rateInMilliHz);
         TTime Zero();
     }

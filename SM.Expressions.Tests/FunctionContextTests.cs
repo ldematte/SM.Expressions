@@ -26,7 +26,7 @@ namespace SM.Expressions.Tests
             var expression = SMExpressionParser.ParseOrThrow($"{function}(1)");
 
             var simpleExpressionContext = new TestExpressionContext();
-            var ev = new EvaluatorVisitor(simpleExpressionContext, new DefaultFunctionContext());
+            var ev = new EvaluatorVisitor(simpleExpressionContext, new TestSymbolTable(), new DefaultFunctionContext());
             expression.Accept(ev);
 
             Assert.AreEqual(expected, ev.Value, 1e-9);

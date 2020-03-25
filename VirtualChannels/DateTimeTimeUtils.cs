@@ -4,9 +4,10 @@ namespace VirtualChannels
 {
     public class DateTimeTimeUtils : ITimeUtils<DateTime>
     {
-        public DateTime AddMillis(DateTime time, int millis)
+        public DateTime IndexToTime(DateTime time0, int index, int rateInMilliHz)
         {
-            return time.AddMilliseconds(millis);
+            var millis = index * 1000 * 1000 / rateInMilliHz;
+            return time0.AddMilliseconds(millis);
         }
 
         public long TimeToIndex(DateTime time0, DateTime currentTime, int rateInMilliHz)
