@@ -50,6 +50,7 @@
     <Compile Include="ITimeUtils.cs" />
     <Compile Include="IVirtualChannel.cs" />
     <Compile Include="DataStructures\CoverageCircularBuffer.cs" />
+    <Compile Include="MillisTimeUtils.cs" />
     <Compile Include="MultiParameterVirtualChannel.cs" />
     <Compile Include="MultiValueWithSlowRowExpressionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -61,6 +62,9 @@
       <Project>{64FA2D9E-7201-4D5F-AA06-5E3251105E3A}</Project>
       <Name>SM.Expressions</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
