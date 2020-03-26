@@ -116,7 +116,7 @@ namespace VirtualChannels.DataStructures
 
         public void Consume(CircularArray<double>[] buffers, int startBufferIdx, long sampleIdx, Action<long, long> segmentFound)
         {
-            m_currentState.Consume(buffers, startBufferIdx, sampleIdx, segmentFound);
+            m_currentState = m_currentState.Consume(buffers, startBufferIdx, sampleIdx, segmentFound);
         }
 
         public void Done(Action<long, long> segmentFound)
