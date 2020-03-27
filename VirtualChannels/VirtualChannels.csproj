@@ -51,11 +51,15 @@
     <Compile Include="IVirtualChannel.cs" />
     <Compile Include="DataStructures\CoverageCircularBuffer.cs" />
     <Compile Include="MillisTimeUtils.cs" />
-    <Compile Include="MultiParameterVirtualChannel.cs" />
+    <Compile Include="MultiLoggedParametersVirtualChannel.cs" />
     <Compile Include="MultiValueWithSlowRowExpressionContext.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingleLoggedParameterVirtualChannel.cs" />
     <Compile Include="SingleValueWithSlowRowExpressionContext.cs" />
+    <Compile Include="SlowRowExpressionContext.cs" />
+    <Compile Include="SlowRowVirtualChannel.cs" />
+    <Compile Include="VirtualChannelBuilder.cs" />
+    <Compile Include="VirtualChannelBuilderVisitor.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SM.Expressions\SM.Expressions.csproj">

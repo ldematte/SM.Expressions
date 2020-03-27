@@ -4,7 +4,7 @@ using VirtualChannels.DataStructures;
 
 namespace VirtualChannels
 {
-    public class MultiParameterVirtualChannel<TTime> : IVirtualChannel<TTime>
+    public class MultiLoggedParametersVirtualChannel<TTime> : IVirtualChannel<TTime>
     {
         private readonly int m_virtualParameterId;
         private readonly int m_loggedParametersFrequencyInMilliHz;
@@ -16,7 +16,7 @@ namespace VirtualChannels
 
         private TTime m_timeZero;
 
-        public MultiParameterVirtualChannel(IExpression virtualExpression, int virtualParameterId, int[] loggedParametersIds, int loggedParametersFrequencyInMilliHz, 
+        public MultiLoggedParametersVirtualChannel(IExpression virtualExpression, int virtualParameterId, int[] loggedParametersIds, int loggedParametersFrequencyInMilliHz, 
             IParametersSymbolTable symbolTable, ISlowRowStorage<TTime> slowRowStorage, ITimeUtils<TTime> timeUtils)
         {
             m_virtualParameterId = virtualParameterId;

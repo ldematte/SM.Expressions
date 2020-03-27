@@ -45,7 +45,7 @@ namespace VirtualChannels.Tests
             symbolTable.Setup(x => x.GetId("b", string.Empty, It.IsAny<Action<int>>(), It.IsAny<Action>()))
                 .Callback<string, string, Action<int>, Action>((s, s1, ok, ko) => ok(slowRowParameterId));
 
-            var vc = new MultiParameterVirtualChannel<long>(expression, virtualParameterId, 
+            var vc = new MultiLoggedParametersVirtualChannel<long>(expression, virtualParameterId, 
                 new []{ loggedParameterA, loggedParameterC }, 10 * 1000, symbolTable.Object, slowRowStorage.Object, new MillisTimeUtils());
 
 
@@ -94,7 +94,7 @@ namespace VirtualChannels.Tests
                 .Callback<string, string, Action<int>, Action>((s, s1, ok, ko) => ok(loggedParameterC));
 
             
-            var vc = new MultiParameterVirtualChannel<long>(expression, virtualParameterId, 
+            var vc = new MultiLoggedParametersVirtualChannel<long>(expression, virtualParameterId, 
                 new []{loggedParameterA, loggedParameterC}, 10 * 1000, symbolTable.Object, slowRowStorage.Object, new MillisTimeUtils());
 
             var expected = new[] {4, 3, 1.414213562373095048};
