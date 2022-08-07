@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Runtime.CompilerServices;
 
 namespace SM.Expressions
 {
@@ -29,7 +28,7 @@ namespace SM.Expressions
         public Func<double> GetCompiledExpression()
         {
             var lambdaExpression = Expression.Lambda<Func<double>>(m_stack.Pop());
-            return lambdaExpression.Compile(DebugInfoGenerator.CreatePdbGenerator());
+            return lambdaExpression.Compile();
         }
 
         public void VisitIdentifier(string identifier, string appName, bool isRaw, bool isNoLog)
